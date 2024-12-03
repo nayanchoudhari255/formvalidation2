@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup page</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+.main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+        input{
+            width: 400px;
+            height: 50px;
+            margin-top: 10px;
+
+        }
+        button{
+            height: 50px;
+            margin-top:10px ;
+        }
+    </style>
+</head>
+
+<body>
+   <div class="main">
+    <h1>Signup</h1>
+    <form action="" id="form">
+        <input type="text" id="name" placeholder="Enter name" required>
+        <span id="Nerror" style="color: red;"></span>
+        <input type="email" id="email" placeholder="Enter email" required>
+        <span id="Eerror" style="color: red;"></span>
+        <input type="password" id="pass" placeholder="Enter password" required>
+        <span id="Perror" style="color: red;"></span>
+        <button type="submit">submit</button>
+    </form>
+   </div>
+    <script>
+        document.getElementById("form").addEventListener("submit", (event) => {
+            event.preventDefault();
+            let npattern=/^[a-zA-Z]{3,}$/;
+            let epattern=/^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+            let ppattern=/^[a-zA-Z0-9@#$!]{8,15}$/;
+
+            document.getElementById("Nerror").textContent = ""
+            document.getElementById("Eerror").textContent  = ""
+            document.getElementById("Perror").textContent  = ""
+
+
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("pass").value.trim();
+
+    let signup=true;   
+          
+if(!npattern.test(name)){
+  
+    document.getElementById("Nerror").textContent = "Name is greater then 3 char"
+    signup=false;
+}
+if(!epattern.test(email)){
+  
+  document.getElementById("Eerror").textContent = "Email required @ and . "
+  signup=false;
+}
+if(!ppattern.test(password)){
+  
+  document.getElementById("Perror").textContent = "Password is more then 8 char . "
+  signup=false;
+}
+    
+if(signup){
+    localStorage.setItem("email",email);
+    localStorage.setItem("password",password);
+    document.body.querySelector("form").style.display="none";
+   setTimeout(() => {
+     alert("data submit sucessfully....");
+    window.location.href="login.html"
+   }, 1500);
+}else{
+    alert("check the info details")
+}
+})
+    </script>
+</body>
+
+</html>

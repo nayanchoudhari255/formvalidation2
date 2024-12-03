@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input
+         {
+            width: 400px;
+            height: 50px;
+            margin-top: 10px;
+
+        }
+        button{
+            height: 50px;
+            margin-top:10px ;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Login</h1>
+        <form action="" id="login">
+            <input type="email" id="lemail" placeholder="Enter email" required>
+            <input type="password" id="lpass" placeholder="Enter password" required>
+            <button type="submit">login</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById("login").addEventListener("submit", () => {
+
+            let lemail = document.getElementById("lemail").value.trim();
+            let lpassword = document.getElementById("lpass").value.trim();
+
+            if (localStorage.getItem("email") === lemail && localStorage.getItem("password") === lpassword) {
+                alert("logined sucessfully....")
+            } else {
+                alert("data is not matched")
+            }
+        })
+    </script>
+</body>
+
+</html>
